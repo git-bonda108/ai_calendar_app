@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Booking } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -62,13 +62,13 @@ export async function GET(request: NextRequest) {
     })
 
     // Convert BigInt to string for JSON serialization
-    const serializedBookings = bookings.map(booking => ({
+    const serializedBookings = bookings.map((booking: Booking) => ({
       ...booking,
-      id: booking.id.toString(),
+      id: booking.id,
     }))
 
     return NextResponse.json(serializedBookings)
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error searching bookings:', error)
     return NextResponse.json(
       { message: 'Failed to search bookings' },
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
       .sort()
 
     return NextResponse.json(uniqueCategories)
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching categories:', error)
     return NextResponse.json(
       { message: 'Failed to fetch categories' },

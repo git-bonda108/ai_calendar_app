@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Booking } from '@prisma/client'
 import { z } from 'zod'
 
 const prisma = new PrismaClient()
@@ -46,13 +46,13 @@ export async function GET(request: NextRequest) {
     })
 
     // Convert BigInt to string for JSON serialization
-    const serializedBookings = bookings.map(booking => ({
+    const serializedBookings = bookings.map((booking: Booking) => ({
       ...booking,
-      id: booking.id.toString(),
+      id: booking.id,
     }))
 
     return NextResponse.json(serializedBookings)
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching bookings:', error)
     return NextResponse.json(
       { message: 'Failed to fetch bookings' },
@@ -127,7 +127,7 @@ export async function PUT(request: NextRequest) {
     })
 
     return NextResponse.json(booking)
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error updating booking:', error)
     
     if (error instanceof z.ZodError) {
@@ -162,7 +162,7 @@ export async function DELETE(request: NextRequest) {
     })
 
     return NextResponse.json({ message: 'Booking deleted successfully' })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error deleting booking:', error)
     return NextResponse.json(
       { message: 'Failed to delete booking' },
@@ -239,7 +239,7 @@ export async function POST(request: NextRequest) {
     console.log('📤 RETURNING SERIALIZED BOOKING:', JSON.stringify(serializedBooking, null, 2))
     console.log('🔶 =============== BOOKING API POST SUCCESS ===============')
     return NextResponse.json(serializedBooking, { status: 201 })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error creating booking:', error)
     
     if (error instanceof z.ZodError) {

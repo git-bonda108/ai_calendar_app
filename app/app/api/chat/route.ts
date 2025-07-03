@@ -651,7 +651,7 @@ async function getBookingsForDateRange(startDate: Date, endDate: Date) {
       },
       orderBy: { startTime: 'asc' }
     })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching bookings:', error)
     return []
   }
@@ -953,7 +953,7 @@ export async function POST(request: NextRequest) {
           response,
         },
       })
-    } catch (dbError) {
+    } catch (dbError: any) {
       console.error('Error saving chat conversation:', dbError)
     }
 
@@ -969,7 +969,7 @@ export async function POST(request: NextRequest) {
       conversationState: 'active'
     })
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error in chat API:', error)
     
     return NextResponse.json({

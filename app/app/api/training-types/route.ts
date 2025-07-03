@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
     ]
 
     return NextResponse.json(categories)
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching categories:', error)
     return NextResponse.json(
       { message: 'Failed to fetch categories' },
