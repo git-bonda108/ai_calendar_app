@@ -1,0 +1,348 @@
+  ▲ Next.js 14.2.28
+  - Local:        http://localhost:3000
+  - Environments: .env
+  - Experiments (use with caution):
+    · outputFileTracingRoot
+
+ ✓ Starting...
+ ✓ Ready in 1502ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.6s (1422 modules)
+ GET / 200 in 3041ms
+ ✓ Compiled in 567ms (701 modules)
+ ○ Compiling /api/bookings ...
+ ✓ Compiled /api/bookings in 1554ms (927 modules)
+ GET /api/bookings?month=2025-07 200 in 1810ms
+ GET /icon?332cfe75a1724318 200 in 1936ms
+ GET /api/bookings?month=2025-07 200 in 66ms
+ GET /api/bookings?month=2025-07 200 in 16ms
+ ✓ Compiled /api/chat in 143ms (753 modules)
+🔍 EXTRACTING INFO FROM: "book training 3 PM to 4 PM on July 13th"
+Intent detected: book (confidence: 30)
+📅 Date parsed: SPECIFIC DATE (Sun Jul 13 2025)
+⏰ Time range parsed: 15:00 to 16:00
+🏷️ Category detected: AI
+✅ EXTRACTION COMPLETE: Intent=book, Confidence=95
+BOOKING DEBUG - nextState: confirming_booking, intent: book, confidence: 95, shouldExecute: true
+🔧 APPLYING SMART DEFAULTS TO: {
+  intent: 'book',
+  date: 2025-07-13T00:00:00.000Z,
+  dateRange: undefined,
+  time: { hour: 15, minute: 0 },
+  endTime: { hour: 16, minute: 0 },
+  duration: 1,
+  category: 'AI',
+  confidence: 95,
+  rawMessage: 'book training 3 PM to 4 PM on July 13th',
+  clientName: undefined
+}
+⏰ TIME DEFAULTS: 7/13/2025, 3:00:00 PM to 7/13/2025, 4:00:00 PM
+✅ SMART DEFAULTS APPLIED: {
+  startTime: 2025-07-13T15:00:00.000Z,
+  endTime: 2025-07-13T16:00:00.000Z,
+  category: 'AI',
+  clientName: 'Client',
+  title: 'AI Training'
+}
+=== BOOKING EXECUTION START ===
+Extracted info: {
+  "intent": "book",
+  "date": "2025-07-13T00:00:00.000Z",
+  "time": {
+    "hour": 15,
+    "minute": 0
+  },
+  "endTime": {
+    "hour": 16,
+    "minute": 0
+  },
+  "duration": 1,
+  "category": "AI",
+  "confidence": 95,
+  "rawMessage": "book training 3 PM to 4 PM on July 13th"
+}
+Defaults applied: {
+  "startTime": "2025-07-13T15:00:00.000Z",
+  "endTime": "2025-07-13T16:00:00.000Z",
+  "category": "AI",
+  "clientName": "Client",
+  "title": "AI Training"
+}
+🔍 CHECKING AVAILABILITY...
+AVAILABILITY CHECK: 2025-07-13T15:00:00.000Z to 2025-07-13T16:00:00.000Z
+Conflicts found: 0
+Availability result: { isAvailable: true, conflictingBookings: [], reason: undefined }
+✅ TIME SLOT IS AVAILABLE - PROCEEDING WITH BOOKING
+📝 CREATING BOOKING WITH DATA: {
+  title: 'AI Training',
+  description: 'Session scheduled via Schedula AI',
+  category: 'AI',
+  startTime: '2025-07-13T15:00:00.000Z',
+  endTime: '2025-07-13T16:00:00.000Z',
+  clientName: 'Client'
+}
+ POST /api/bookings 201 in 101ms
+🎉 BOOKING SUCCESSFULLY CREATED: {
+  id: 'cmcmzsxa90000wdre0j9wpvz3',
+  title: 'AI Training',
+  description: 'Session scheduled via Schedula AI',
+  category: 'AI',
+  startTime: '2025-07-13T15:00:00.000Z',
+  endTime: '2025-07-13T16:00:00.000Z',
+  clientName: 'Client',
+  clientEmail: null,
+  status: 'CONFIRMED',
+  createdAt: '2025-07-03T06:16:30.081Z',
+  updatedAt: '2025-07-03T06:16:30.081Z'
+}
+ POST /api/chat 200 in 1750ms
+ GET /api/bookings?month=2025-07 200 in 17ms
+🔍 EXTRACTING INFO FROM: "what bookings do I have on July 13th?"
+Intent detected: book (confidence: 30)
+📅 Date parsed: SPECIFIC DATE (Sun Jul 13 2025)
+✅ EXTRACTION COMPLETE: Intent=book, Confidence=55
+BOOKING DEBUG - nextState: gathering_info, intent: book, confidence: 55, shouldExecute: true
+🔧 APPLYING SMART DEFAULTS TO: {
+  intent: 'book',
+  date: 2025-07-13T00:00:00.000Z,
+  dateRange: undefined,
+  time: undefined,
+  endTime: undefined,
+  duration: undefined,
+  category: undefined,
+  confidence: 55,
+  rawMessage: 'what bookings do I have on July 13th?',
+  clientName: undefined
+}
+⏰ TIME DEFAULTS: 7/13/2025, 10:00:00 AM to 7/13/2025, 11:00:00 AM
+✅ SMART DEFAULTS APPLIED: {
+  startTime: 2025-07-13T10:00:00.000Z,
+  endTime: 2025-07-13T11:00:00.000Z,
+  category: 'Training',
+  clientName: 'Client',
+  title: 'Training Session'
+}
+=== BOOKING EXECUTION START ===
+Extracted info: {
+  "intent": "book",
+  "date": "2025-07-13T00:00:00.000Z",
+  "confidence": 55,
+  "rawMessage": "what bookings do I have on July 13th?"
+}
+Defaults applied: {
+  "startTime": "2025-07-13T10:00:00.000Z",
+  "endTime": "2025-07-13T11:00:00.000Z",
+  "category": "Training",
+  "clientName": "Client",
+  "title": "Training Session"
+}
+🔍 CHECKING AVAILABILITY...
+AVAILABILITY CHECK: 2025-07-13T10:00:00.000Z to 2025-07-13T11:00:00.000Z
+Conflicts found: 0
+Availability result: { isAvailable: true, conflictingBookings: [], reason: undefined }
+✅ TIME SLOT IS AVAILABLE - PROCEEDING WITH BOOKING
+📝 CREATING BOOKING WITH DATA: {
+  title: 'Training Session',
+  description: 'Session scheduled via Schedula AI',
+  category: 'Training',
+  startTime: '2025-07-13T10:00:00.000Z',
+  endTime: '2025-07-13T11:00:00.000Z',
+  clientName: 'Client'
+}
+ POST /api/bookings 201 in 18ms
+🎉 BOOKING SUCCESSFULLY CREATED: {
+  id: 'cmcmzteb30002wdre8mq7jhqq',
+  title: 'Training Session',
+  description: 'Session scheduled via Schedula AI',
+  category: 'Training',
+  startTime: '2025-07-13T10:00:00.000Z',
+  endTime: '2025-07-13T11:00:00.000Z',
+  clientName: 'Client',
+  clientEmail: null,
+  status: 'CONFIRMED',
+  createdAt: '2025-07-03T06:16:52.143Z',
+  updatedAt: '2025-07-03T06:16:52.143Z'
+}
+ POST /api/chat 200 in 1962ms
+ GET /api/bookings?month=2025-07 200 in 21ms
+ GET /api/bookings?month=2025-07 200 in 14ms
+ ✓ Compiled in 788ms (1454 modules)
+ ✓ Compiled in 529ms (1452 modules)
+ ✓ Compiled in 363ms (701 modules)
+ DELETE /api/bookings?id=cmcmzsxa90000wdre0j9wpvz3 200 in 108ms
+ DELETE /api/bookings?id=cmcmzteb30002wdre8mq7jhqq 200 in 13ms
+ ✓ Compiled /api/chat in 183ms (753 modules)
+🔍 EXTRACTING INFO FROM: "what bookings do I have on July 13th?"
+Intent detected: query (confidence: 50)
+📅 Date parsed: SPECIFIC DATE (Sun Jul 13 2025)
+✅ EXTRACTION COMPLETE: Intent=query, Confidence=75
+BOOKING DEBUG - nextState: providing_info, intent: query, confidence: 75, shouldExecute: false
+ POST /api/chat 200 in 1683ms
+🔍 EXTRACTING INFO FROM: "book training 2 PM to 3 PM on July 15th"
+Intent detected: book (confidence: 30)
+📅 Date parsed: SPECIFIC DATE (Tue Jul 15 2025)
+⏰ Time range parsed: 14:00 to 15:00
+🏷️ Category detected: AI
+✅ EXTRACTION COMPLETE: Intent=book, Confidence=95
+BOOKING DEBUG - nextState: confirming_booking, intent: book, confidence: 95, shouldExecute: true
+🔧 APPLYING SMART DEFAULTS TO: {
+  intent: 'book',
+  date: 2025-07-13T00:00:00.000Z,
+  dateRange: undefined,
+  time: { hour: 14, minute: 0 },
+  endTime: { hour: 15, minute: 0 },
+  duration: 1,
+  category: 'AI',
+  confidence: 95,
+  rawMessage: 'book training 2 PM to 3 PM on July 15th',
+  clientName: undefined
+}
+⏰ TIME DEFAULTS: 7/13/2025, 2:00:00 PM to 7/13/2025, 3:00:00 PM
+✅ SMART DEFAULTS APPLIED: {
+  startTime: 2025-07-13T14:00:00.000Z,
+  endTime: 2025-07-13T15:00:00.000Z,
+  category: 'AI',
+  clientName: 'Client',
+  title: 'AI Training'
+}
+=== BOOKING EXECUTION START ===
+Extracted info: {
+  "intent": "book",
+  "date": "2025-07-13T00:00:00.000Z",
+  "time": {
+    "hour": 14,
+    "minute": 0
+  },
+  "endTime": {
+    "hour": 15,
+    "minute": 0
+  },
+  "duration": 1,
+  "category": "AI",
+  "confidence": 95,
+  "rawMessage": "book training 2 PM to 3 PM on July 15th"
+}
+Defaults applied: {
+  "startTime": "2025-07-13T14:00:00.000Z",
+  "endTime": "2025-07-13T15:00:00.000Z",
+  "category": "AI",
+  "clientName": "Client",
+  "title": "AI Training"
+}
+🔍 CHECKING AVAILABILITY...
+AVAILABILITY CHECK: 2025-07-13T14:00:00.000Z to 2025-07-13T15:00:00.000Z
+Conflicts found: 0
+Availability result: { isAvailable: true, conflictingBookings: [], reason: undefined }
+✅ TIME SLOT IS AVAILABLE - PROCEEDING WITH BOOKING
+📝 CREATING BOOKING WITH DATA: {
+  title: 'AI Training',
+  description: 'Session scheduled via Schedula AI',
+  category: 'AI',
+  startTime: '2025-07-13T14:00:00.000Z',
+  endTime: '2025-07-13T15:00:00.000Z',
+  clientName: 'Client'
+}
+ POST /api/bookings 201 in 105ms
+🎉 BOOKING SUCCESSFULLY CREATED: {
+  id: 'cmcmzvt6a0005wdrenaipdvr0',
+  title: 'AI Training',
+  description: 'Session scheduled via Schedula AI',
+  category: 'AI',
+  startTime: '2025-07-13T14:00:00.000Z',
+  endTime: '2025-07-13T15:00:00.000Z',
+  clientName: 'Client',
+  clientEmail: null,
+  status: 'CONFIRMED',
+  createdAt: '2025-07-03T06:18:44.723Z',
+  updatedAt: '2025-07-03T06:18:44.723Z'
+}
+ POST /api/chat 200 in 1255ms
+ GET /api/bookings?month=2025-07 200 in 17ms
+ GET / 200 in 101ms
+ GET /icon?332cfe75a1724318 200 in 207ms
+ GET /api/bookings?month=2025-07 200 in 23ms
+ GET /api/bookings?month=2025-07 200 in 22ms
+🔍 EXTRACTING INFO FROM: "book Python training July 20th at 10 AM"
+Intent detected: book (confidence: 30)
+📅 Date parsed: SPECIFIC DATE (Sun Jul 20 2025)
+⏰ Single time parsed: 10:00
+🏷️ Category detected: Python
+✅ EXTRACTION COMPLETE: Intent=book, Confidence=85
+BOOKING DEBUG - nextState: confirming_booking, intent: book, confidence: 85, shouldExecute: true
+🔧 APPLYING SMART DEFAULTS TO: {
+  intent: 'book',
+  date: 2025-07-20T00:00:00.000Z,
+  dateRange: undefined,
+  time: { hour: 10, minute: 0 },
+  endTime: undefined,
+  duration: 1,
+  category: 'Python',
+  confidence: 85,
+  rawMessage: 'book Python training July 20th at 10 AM',
+  clientName: undefined
+}
+⏰ TIME DEFAULTS: 7/20/2025, 10:00:00 AM to 7/20/2025, 11:00:00 AM
+✅ SMART DEFAULTS APPLIED: {
+  startTime: 2025-07-20T10:00:00.000Z,
+  endTime: 2025-07-20T11:00:00.000Z,
+  category: 'Python',
+  clientName: 'Client',
+  title: 'Python Training'
+}
+=== BOOKING EXECUTION START ===
+Extracted info: {
+  "intent": "book",
+  "date": "2025-07-20T00:00:00.000Z",
+  "time": {
+    "hour": 10,
+    "minute": 0
+  },
+  "duration": 1,
+  "category": "Python",
+  "confidence": 85,
+  "rawMessage": "book Python training July 20th at 10 AM"
+}
+Defaults applied: {
+  "startTime": "2025-07-20T10:00:00.000Z",
+  "endTime": "2025-07-20T11:00:00.000Z",
+  "category": "Python",
+  "clientName": "Client",
+  "title": "Python Training"
+}
+🔍 CHECKING AVAILABILITY...
+AVAILABILITY CHECK: 2025-07-20T10:00:00.000Z to 2025-07-20T11:00:00.000Z
+Conflicts found: 0
+Availability result: { isAvailable: true, conflictingBookings: [], reason: undefined }
+✅ TIME SLOT IS AVAILABLE - PROCEEDING WITH BOOKING
+📝 CREATING BOOKING WITH DATA: {
+  title: 'Python Training',
+  description: 'Session scheduled via Schedula AI',
+  category: 'Python',
+  startTime: '2025-07-20T10:00:00.000Z',
+  endTime: '2025-07-20T11:00:00.000Z',
+  clientName: 'Client'
+}
+ POST /api/bookings 201 in 24ms
+🎉 BOOKING SUCCESSFULLY CREATED: {
+  id: 'cmcmzwnbc0007wdrehf6i88ap',
+  title: 'Python Training',
+  description: 'Session scheduled via Schedula AI',
+  category: 'Python',
+  startTime: '2025-07-20T10:00:00.000Z',
+  endTime: '2025-07-20T11:00:00.000Z',
+  clientName: 'Client',
+  clientEmail: null,
+  status: 'CONFIRMED',
+  createdAt: '2025-07-03T06:19:23.785Z',
+  updatedAt: '2025-07-03T06:19:23.785Z'
+}
+ POST /api/chat 200 in 1229ms
+ GET /api/bookings?month=2025-07 200 in 18ms
+🔍 EXTRACTING INFO FROM: "what training sessions do I have on July 20th?"
+Intent detected: query (confidence: 50)
+📅 Date parsed: SPECIFIC DATE (Sun Jul 20 2025)
+🏷️ Category detected: AI
+✅ EXTRACTION COMPLETE: Intent=query, Confidence=85
+BOOKING DEBUG - nextState: providing_info, intent: query, confidence: 85, shouldExecute: false
+ POST /api/chat 200 in 1858ms
+[?25h
