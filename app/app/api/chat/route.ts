@@ -364,43 +364,27 @@ async function executeBooking(extracted: ExtractedInfo, defaults: any): Promise<
 
   try {
     // Prepare booking data
-    const requestBody = {
+    const bookingData = {
       title: defaults.title,
       description: 'Session scheduled via Schedula AI',
       category: defaults.category,
-      startTime: defaults.startTime.toISOString(),
-      endTime: defaults.endTime.toISOString(),
+      startTime: defaults.startTime,
+      endTime: defaults.endTime,
       clientName: defaults.clientName,
     }
 
-    console.log('📝 CREATING BOOKING WITH DATA:', requestBody)
+    console.log('📝 CREATING BOOKING WITH DATA:', bookingData)
 
-    // Call the booking API
-    const apiUrl = `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/bookings`
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody)
+    // Create booking directly with Prisma instead of fetch
+    const booking = await prisma.booking.create({
+      data: bookingData
     })
 
-    if (response.ok) {
-      const booking = await response.json()
-      console.log('🎉 BOOKING SUCCESSFULLY CREATED:', booking.id)
-      
-      return {
-        success: true,
-        booking
-      }
-    } else {
-      const errorText = await response.text()
-      console.log('❌ BOOKING API ERROR:', errorText)
-      
-      return {
-        success: false,
-        error: 'Failed to create booking'
-      }
+    console.log('🎉 BOOKING SUCCESSFULLY CREATED:', booking.id)
+    
+    return {
+      success: true,
+      booking
     }
   } catch (error) {
     console.error('❌ BOOKING EXECUTION ERROR:', error)
@@ -463,8 +447,7 @@ async function executeDelete(extracted: ExtractedInfo): Promise<{
       }
     }
 
-    // Delete each booking using the booking API
-    const apiUrl = `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/bookings`
+    // Delete each booking using direct Prisma calls
     let deletedCount = 0
     let deletedBookings: any[] = []
 
@@ -472,21 +455,13 @@ async function executeDelete(extracted: ExtractedInfo): Promise<{
       try {
         console.log(`🗑️ Deleting booking: ${booking.id} - ${booking.title}`)
         
-        const response = await fetch(`${apiUrl}?id=${booking.id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          }
+        await prisma.booking.delete({
+          where: { id: booking.id }
         })
 
-        if (response.ok) {
-          deletedCount++
-          deletedBookings.push(booking)
-          console.log(`✅ Successfully deleted booking: ${booking.id}`)
-        } else {
-          const errorText = await response.text()
-          console.log(`❌ Failed to delete booking ${booking.id}: ${errorText}`)
-        }
+        deletedCount++
+        deletedBookings.push(booking)
+        console.log(`✅ Successfully deleted booking: ${booking.id}`)
       } catch (deleteError) {
         console.error(`❌ Error deleting booking ${booking.id}:`, deleteError)
       }
